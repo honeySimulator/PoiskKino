@@ -1,18 +1,92 @@
-# Vue 3 + TypeScript + Vite
+# ПоискКино
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+### На данном вебсайте был реализован следующий функционал:
 
-## Recommended IDE Setup
+1. Главная страница:
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+   1.1 Отображение списка фильмов в виде карточек с постером, названием,
+   рейтингом и годом.
 
-## Type Support For `.vue` Imports in TS
+   1.2 Возможность поиска фильма по названию. 
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+   1.3 Возможность сортировки по году, рейтингу, хронометражу.
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+   1.4 Пагинация страниц, отображение фиксированного числа фильмов на
+   странице.
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+
+2. Страница фильма:
+
+   2.1 Возможность посмотреть расширенные данные о фильме - описание,
+   оригинальное название и остальные поля из БД.
+   
+   2.2 Возможность поставить оценку.
+   
+   2.3 Возможность добавить фильм в избранное / удалить из избранного.
+
+
+3. Страница с избранными фильмами:
+   
+   3.1 Отображение всех фильмов, которые пользователь добавил в избранное
+   
+   3.2 Возможность убрать фильм из избранного
+
+
+4. Страница с оценками:
+   
+   4.1 Отображение всех фильмов, которые пользователь оценил
+
+Были реализованы следующие элементы:
+1.  Страницы:
+    
+   - Main - Главная страница
+    
+   - MoviePage - Страница фильма
+   
+   - RatedMovies - Страница избранного
+    
+   - Favorites - Страница с оценками
+
+2.  Компоненты:
+
+- FilterSort.vue – сортировка фильмов
+
+- Sort.vue – поиск фильмов
+- Footer.vue – шапка сайта
+- Header.vue – подвал сайта
+- MovieCard.vue – компонент карточки фильма
+- Pagination.vue – пагинация страниц
+
+3.  Роутинг:
+- '/' – главная страница
+- '/movies/:id'- Страница фильма
+- '/favorite'- Страница избранного
+- '/rated'- Страница с оценками
+
+Общий вид Главной страницы сайта:
+![img.png](src/assets/img.png)
+
+Все кнопки сайта кликабельны и отображают корректную информацию. Пример сортировки по году по возрастанию используя компоненту Sort.vue:
+
+![img.png](src/assets/img1.png)
+
+Функционал поиска фильма по введенному тексту «дж» в строке поиска:
+![img.png](src/assets/img2.png)
+
+Пагинация продемонстрирована в меньшем масштабе страницы, чтобы было видно нижний элемент, который отображает количество страниц по 24 фильма:
+![img_1.png](src/assets/img_1.png)
+
+Страница фильма, на которой отображается компонент MovieCard.vue в расширенном формате:
+![img_2.png](src/assets/img_2.png)
+
+Отображение фильмов на странице избранное с кнопками «Удалить из избранного»:
+![img_3.png](src/assets/img_3.png)
+
+Также фильм можно удалить из избранного на самой странице фильма:
+![img_4.png](src/assets/img_4.png)
+
+Отображение фильмов на странице «Мои оценки», где отображается оценка, выставленная пользователем:
+![img_5.png](src/assets/img_5.png)
+
+Модульный тест для тестирования маршрутизации в проекте. Тест проведен с использованием Jest и Vue Test Utils. В каждом тестовом случае используется router.push для навигации на определенный URL. Затем проверяется, что текущий компонент соответствует ожидаемому компоненту после навигации с помощью wrapper.findComponent и метода exists().
+![img_6.png](src/assets/img_6.png)
